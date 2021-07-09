@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
 
-/* RESETS
-============================================ */
+/* 
+============================================
+RESETS CODES
+============================================ 
+*/
 
 html {
   -webkit-box-sizing: border-box;
@@ -12,18 +14,7 @@ html {
           box-sizing: inherit;
 }
 
-body {
-  margin: 20px 0;
-  padding: 0;
-  line-height: 1;
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
-  color: #202020;
-  background-color: #fbfbfb;
-  font-smooth: always;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+
 
 .container {
   max-width: 1140px;
@@ -58,8 +49,11 @@ body {
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
 }
 
-/* DROPDOWN
-============================================ */
+/* 
+============================================
+DROPDOWN
+============================================ 
+*/
 
 .select-wrapper {
   display: flex;
@@ -115,7 +109,7 @@ body {
         border-left: 1px solid #ccc;
         border-right: 1px solid #ccc;
 
-        &:hover, &:focus {
+        &:hover{
           cursor: pointer;
           font-weight: bold;
           background-color: #ccc;

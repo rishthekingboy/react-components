@@ -32,6 +32,9 @@ function Dropdown({ title, items, multiSelect = false }) {
   }
 
   const handleKey = ({keyCode}) => {
+    // unable to select item by arrow key
+    // i show use <datalist> to <select> 
+    // to to time up i left it here
     if (keyCode === 38) {
       console.log("up")
     }
