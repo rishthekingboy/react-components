@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+h3{
+    margin-bottom: 20px;
+    color: rgb(41, 41, 41);
+}
+
+.container input{
+    width: 30vw;
+    height: 30px;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 2px 0px lightgray;
+}

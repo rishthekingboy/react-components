@@ -1,96 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import onClickOutside from 'react-onclickoutside';
+import React, { useState,  } from 'react';
+import './dropdown.css';
+function Dropdown() {
+  const [selected, setSelected] = useState([]);
+  const [input, setInput] = useState('');
+  let items = ['Edge', 'Firefox', 'Opera'];
 
-function Dropdown({ title, items, multiSelect = false }) {
-  const [open, setOpen] = useState(false); //toggle secect box
-  const [selection, setSelection] = useState([]); //store values
-
-  const toggle = () => setOpen(!open);
-  Dropdown.handleClickOutside = () => setOpen(false);
-
-  function handleOnClick(item) {
-    if (!selection.some(current => current.id === item.id)) {
-      if (!multiSelect) {
-        setSelection([item]);
-      } else if (multiSelect) {
-        setSelection([...selection, item]);
-      }
-    } else {
-      let selectionAfterRemoval = selection;
-      selectionAfterRemoval = selectionAfterRemoval.filter(
-        current => current.id !== item.id
-      );
-      setSelection([...selectionAfterRemoval]);
+  const handleInput = (e) => {
+    e.preventDefault();
+    if (input !== '' && selected.indexOf(input) < 0) {
+      setSelected(prev => [...prev, input])
     }
-  }
 
-  function isItemInSelection(item) {
-    if (selection.some(current => current.id === item.id)) {
-      return true;
-    }
-    return false;
-  }
 
-  const handleKey = ({keyCode}) => {
-    // unable to select item by arrow key
-    // i show use <datalist> to <select> 
-    // to to time up i left it here
-    if (keyCode === 38) {
-      console.log("up")
-    }
-    if (keyCode === 40) {
-      console.log("down")
-    }
   }
 
 
-  useEffect(() => {
-    console.log(selection);
-  }, [selection]);
 
   return (
-    <div className="select-wrapper">
-      <div
-        tabIndex={0}
-        className="select-header"
-        role="button"
-        onKeyPress={() => toggle(!open)}
-        onClick={() => toggle(!open)}
-      >
-        <div className="select-header__title">
-          <p className="select-header__title--bold">{selection?.length <= 0 ? title : selection[selection.length-1]?.value} - ({selection?.length})</p>
-        </div>
-        <div className="select-header__action">
-          <p>{open ? 'Close' : 'Open'}</p>
-        </div>
-      </div>
-      <ul className="selectedItems">
+    <div className="container">
+      <h3>DropDown Selector</h3>
+      
+      <form onSubmit={handleInput}>
+
+        <input list="browsers" name="browser" id="browser" onChange={e => setInput(e.target.value)} />
+
+        <datalist id="browsers">
+          {items.map((e, i) => (
+            <option key={i} value={e} />
+          ))}
+
+        </datalist>
+
+      </form>
+
+      <ul>
         {
-          selection.map((e,i) => (
-            <li key={i}>{e.value}</li>
+          selected.map((s, i) => (
+            <li key={i}>{s}</li>
           ))
         }
       </ul>
 
-
-      {open && (
-        <ul className="select-list" onKeyDown={ e => handleKey(e) } >
-          {items.map(item => (
-            <li className="select-list-item" key={item.id}>
-              <button type="button" onClick={() => handleOnClick(item)} className={isItemInSelection(item) ? 'selectedItems-button': null}>
-                <span>{item.value}</span>
-                <span>{isItemInSelection(item) && 'Selected'}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }
 
-const clickOutsideConfig = {
-  handleClickOutside: () => Dropdown.handleClickOutside,
-};
 
-export default onClickOutside(Dropdown, clickOutsideConfig);
+
+export default Dropdown;
