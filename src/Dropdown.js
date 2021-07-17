@@ -18,7 +18,7 @@ function Dropdown() {
     e.preventDefault()
     if(selected == "Edge"){
       setTimeout(() => {
-        alert("You have experienced some delay because use selected Edge")
+        alert("You have experienced some delay because you selected Edge")
       }, 3000);
     }else{
 
