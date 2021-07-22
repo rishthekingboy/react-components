@@ -3,7 +3,7 @@ import './dropdown.css';
 function Dropdown() {
   const [selected, setSelected] = useState([]);
   const [input, setInput] = useState('');
-  let items = ['Edge', 'Firefox', 'Opera'];
+  let items = ['Edge', 'Firefox', 'Opera','Chrome','Safari'];
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -12,6 +12,18 @@ function Dropdown() {
     }
 
 
+  }
+
+  const handleClick=(e)=>{
+    e.preventDefault()
+    if(selected == "Edge"){
+      setTimeout(() => {
+        alert("You have experienced some delay because you selected Edge")
+      }, 3000);
+    }else{
+
+      alert(`You selected ${selected}`)
+    }
   }
 
 
@@ -40,6 +52,8 @@ function Dropdown() {
           ))
         }
       </ul>
+
+      <button onClick={handleClick} style={{marginTop:'10px'}}>Select</button>
 
     </div>
   );
